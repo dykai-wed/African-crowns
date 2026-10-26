@@ -47,9 +47,20 @@ export function findClickedEntity(
     const bConfig = BUILDINGS[b.type];
     const { x: gx, y: gy } = tileToWorld(b.x + b.width * 0.5, b.y + b.height * 0.5);
 
-    // Height of building sprite upright
-    const spriteHeight = b.type === 'compound' ? 68 : b.type === 'tower' ? 58 : 42;
-    const halfW = b.width * 18;
+    // Height of building sprite upright in 2.5D volumetric perspective
+    const spriteHeight =
+      b.type === 'compound'
+        ? 78
+        : b.type === 'tower'
+          ? 70
+          : b.type === 'barracks'
+            ? 50
+            : b.type === 'granary' || b.type === 'house'
+              ? 46
+              : b.type === 'gate'
+                ? 44
+                : 38;
+    const halfW = b.width * 20;
 
     // Check upright building bounding box + isometric base
     const minX = gx - halfW;
