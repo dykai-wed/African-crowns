@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="sunGlow" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="45%" stop-color="#d97706"/>
+      <stop offset="85%" stop-color="#9a3412"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="35%" stop-color="#f59e0b"/>
+      <stop offset="70%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="crownGem" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle with safe-zone margin -->
+  <rect width="512" height="512" rx="100" fill="#1c140e"/>
+  <circle cx="256" cy="256" r="230" fill="url(#sunGlow)"/>
+
+  <!-- Sun Rays radiating outward -->
+  <g stroke="#f59e0b" stroke-width="8" stroke-linecap="round" opacity="0.65">
+    <line x1="256" y1="45" x2="256" y2="85" />
+    <line x1="256" y1="427" x2="256" y2="467" />
+    <line x1="45" y1="256" x2="85" y2="256" />
+    <line x1="427" y1="256" x2="467" y2="256" />
+    <line x1="107" y1="107" x2="137" y2="137" />
+    <line x1="375" y1="375" x2="405" y2="405" />
+    <line x1="107" y1="405" x2="137" y2="375" />
+    <line x1="375" y1="137" x2="405" y2="107" />
+  </g>
+
+  <!-- Outer Traditional Geometric Border -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#fde047" stroke-width="3" stroke-dasharray="8 8" opacity="0.5"/>
+
+  <!-- African Royal Diadem / Crown Emblem -->
+  <!-- Base headband with chevron pattern -->
+  <path d="M 120 340 L 392 340 L 380 375 L 132 375 Z" fill="#78350f" stroke="#f59e0b" stroke-width="4"/>
+  <g fill="#fde047">
+    <polygon points="145,348 155,365 135,365" />
+    <polygon points="185,348 195,365 175,365" />
+    <polygon points="225,348 235,365 215,365" />
+    <polygon points="256,348 266,365 246,365" />
+    <polygon points="287,348 297,365 277,365" />
+    <polygon points="327,348 337,365 317,365" />
+    <polygon points="367,348 377,365 357,365" />
+  </g>
+
+  <!-- Towering Crown Points (Inspired by Sahelian Mud-Minaret Pinnacles & Edo Coral Beaded Peaks) -->
+  <path d="M 120 340 
+           L 135 220 L 175 280 
+           L 210 180 L 256 260 
+           L 302 180 L 337 280 
+           L 377 220 L 392 340 Z"
+        fill="url(#goldGrad)" stroke="#451a03" stroke-width="6" stroke-linejoin="round"/>
+
+  <!-- Central Monumental Spire -->
+  <path d="M 235 270 L 256 125 L 277 270 Z" fill="#fef08a" stroke="#78350f" stroke-width="4"/>
+
+  <!-- Ornate Coral / Carnelian Crest Beads -->
+  <circle cx="256" cy="120" r="16" fill="url(#crownGem)" stroke="#fde047" stroke-width="3"/>
+  <circle cx="210" cy="175" r="12" fill="url(#crownGem)" stroke="#fde047" stroke-width="2.5"/>
+  <circle cx="302" cy="175" r="12" fill="url(#crownGem)" stroke="#fde047" stroke-width="2.5"/>
+  <circle cx="135" cy="215" r="10" fill="url(#crownGem)" stroke="#fde047" stroke-width="2"/>
+  <circle cx="377" cy="215" r="10" fill="url(#crownGem)" stroke="#fde047" stroke-width="2"/>
+
+  <!-- Cross-Hatched Traditional Bronze Texturing -->
+  <line x1="256" y1="200" x2="256" y2="330" stroke="#78350f" stroke-width="4"/>
+  <circle cx="256" cy="305" r="14" fill="#ef4444" stroke="#fef08a" stroke-width="3"/>
+</svg>

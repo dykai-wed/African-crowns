@@ -1,0 +1,1198 @@
+# AFRICAN CROWNS: EMPIRES OF THE SUN
+## Master Upgrade Prompt — Continuous World, Living Ecosystems, Settlement Building, Graphics and Gameplay
+
+Act as a senior real-time strategy game developer, gameplay programmer, technical architect, procedural world-generation engineer, AI simulation engineer, technical artist, UI/UX designer, performance specialist and African history research consultant.
+
+You are working on my **existing game project, African Crowns: Empires of the Sun**.
+
+Your mission is to substantially upgrade the existing game into a rich, immersive African historical real-time strategy and settlement-building game inspired by the world-building, economy, castle construction, resource management, military strategy and settlement simulation of classic games such as *Stronghold Crusader*.
+
+Do not copy another game's assets or distinctive designs. Develop an original identity grounded in African landscapes, historical civilizations, architecture, trade, agriculture, warfare and cultural achievements.
+
+The game should eventually offer a huge explorable world, functional settlements, intelligent villagers, a living ecosystem, meaningful economic decisions, military strategy and distinct civilization campaigns.
+
+The intended experience is a polished 2D or 2.5D isometric strategy game, primarily designed for Android phones and tablets while remaining playable on desktop computers.
+
+The existing project reportedly uses React, TypeScript and a custom HTML Canvas isometric renderer. Inspect the actual code before relying on this description.
+
+---
+
+# PART 1 — CRITICAL DEVELOPMENT RULES
+
+1. **Inspect the existing codebase before changing anything.** Identify its rendering system, simulation loop, map generation, entities, pathfinding, resource economy, input handling, buildings, save/load system and current game mechanics.
+
+2. **Upgrade the existing project.** Do not replace it with a new application, static mockup, disconnected demo or completely different architecture.
+
+3. Preserve working features wherever possible. Reuse existing systems when practical and improve them rather than needlessly rewriting them.
+
+4. Maintain the current React and TypeScript architecture unless inspection reveals a compelling technical reason to change it. Keep the existing Canvas renderer if it can support the requested improvements efficiently.
+
+5. Do not introduce unnecessary paid APIs, subscriptions, proprietary services or heavyweight dependencies. Prefer free, local, procedural and open-source solutions.
+
+6. Do not add decorative controls that do nothing. Every visible button, menu item, building, command and resource indicator must have a defined function or be clearly labelled as not yet implemented.
+
+7. Do not create visual placeholders and describe them as completed simulation systems. A farm must actually grow crops; a market must provide an economic function; workers must perform tasks; animals must behave according to their roles.
+
+8. Use data-driven definitions for buildings, resources, biomes, crops, animals, units and civilization-specific features wherever practical.
+
+9. Maintain compatibility with existing saved games when feasible. If the save format changes, introduce versioning, safe migration or a clear fallback.
+
+10. Optimize for ordinary laptops with integrated graphics and Android devices with limited processing power and memory.
+
+11. Do not implement a complete online multiplayer backend during this upgrade. Keep the simulation architecture reasonably prepared for future multiplayer, but prioritize the single-player game and its core systems.
+
+12. **Work in stages.** Inspect the entire project first, then implement Stage 1 only. Test it before proceeding to Stage 2. Continue in subsequent passes without discarding earlier improvements.
+
+13. If the entire specification cannot fit into one implementation pass, preserve the full vision in a development checklist. Never silently omit major requirements.
+
+14. At the end of each stage, report:
+   - What was implemented.
+   - Which files were modified or created.
+   - Which existing features were preserved.
+   - Which tests or build checks were run and their actual results.
+   - Known bugs, limitations and remaining tasks.
+   - The next recommended implementation stage.
+
+---
+
+# PART 2 — THE MOST IMPORTANT REQUIREMENT: ONE HUGE, CONTINUOUS WORLD
+
+## 2.1 Replace disconnected biome maps with one interconnected world
+
+The game must feature **one large, continuous, interconnected world**, not separate maps for each biome and not isolated terrain patches that appear to be different levels.
+
+The world should feel like a coherent geographical region that players can explore for long periods, discover distant lands, establish new settlements, secure trade routes and encounter different ecological and strategic conditions.
+
+The world should connect naturally in every direction supported by the existing map architecture.
+
+Do not make the world feel like a collection of small square arenas joined together.
+
+Use procedural generation with a deterministic seed so that the same seed produces the same world. Where practical, allow the player to choose Small, Medium and Large world sizes and display the selected seed.
+
+The generator should create coherent terrain from multiple interacting layers, including:
+
+- Elevation and slope.
+- Moisture and rainfall.
+- Temperature or climate bands where appropriate.
+- Water flow and drainage.
+- Soil fertility.
+- Vegetation density.
+- Geological formations.
+- Biome suitability.
+- Resource distribution.
+- Wildlife habitats.
+- Settlement viability.
+
+Use these layers to determine what can naturally exist in each part of the world.
+
+Avoid independent random placement of every environmental object. A forest, river, fertile valley or mountain range should emerge from the relationship between the world-generation systems.
+
+## 2.2 Create natural biome transitions
+
+The world should contain a broad range of African-inspired environments, including:
+
+- Sahara and arid desert.
+- Semi-arid scrubland.
+- Sahelian grasslands.
+- Open savanna.
+- Woodland and dry forest.
+- Tropical rainforest.
+- Highlands and rocky uplands.
+- Mountain foothills.
+- River valleys.
+- Fertile floodplains.
+- Nile-like river corridors and deltas.
+- Lakes, marshes and wetlands.
+- Coastal environments where suitable.
+- Seasonal streams and watercourses.
+- Natural grassland clearings.
+
+These environments must connect naturally.
+
+For example, a dry region may gradually transition into semi-arid scrubland, then into grassland and woodland as moisture increases. Riverbanks may support denser vegetation than nearby dry land. Highlands should influence drainage and create plausible changes in vegetation and terrain.
+
+Do not draw sharp biome borders unless a geographical feature justifies them.
+
+The game does not need to reproduce the entire African continent in exact geographical scale. It should create believable African-inspired regions with coherent ecology and geography.
+
+## 2.3 Rivers, lakes and water systems
+
+Rivers must follow believable geographical rules.
+
+- Rivers should generally flow downhill from highlands toward lakes, larger rivers, deltas or map boundaries.
+- Tributaries should connect naturally.
+- Lakes should occupy plausible low-lying areas.
+- Floodplains should form around suitable waterways.
+- Water crossings should create meaningful strategic decisions.
+- Marshes and wetlands should occur in appropriate low-lying and water-rich areas.
+- Water should block movement unless a valid crossing, bridge, ford or transport system exists.
+- Fishing should be possible only in suitable water.
+- Crops should benefit from appropriate moisture and fertile soil.
+- Water access should influence settlement placement and agricultural productivity.
+
+Avoid rivers that abruptly end in the middle of the landscape without a plausible reason.
+
+Water must be more than decoration. It should influence settlement location, movement, farming, food supply, trade and military defence.
+
+## 2.4 World size and seamless exploration
+
+Make the world substantially larger than the current playable area. Aim initially for at least four times the current area if the architecture and target hardware can support it.
+
+If the current architecture cannot support the target size efficiently, choose a practical initial size and build the system so it can expand.
+
+The player should be able to explore outward from the starting settlement, discover resources, encounter wildlife, find natural chokepoints, establish outposts and eventually interact with rival settlements.
+
+Where appropriate, use:
+
+- World regions or chunks.
+- Viewport-based rendering.
+- Off-screen entity culling.
+- Terrain and sprite caching.
+- Spatial indexing.
+- Efficient visibility and fog-of-war calculations.
+- Lightweight simulation for distant entities.
+- Active simulation around the player.
+- Simplified updates for remote settlements and wildlife.
+- Deferred generation or loading of distant regions if the architecture benefits from it.
+
+Chunk boundaries must not appear as visible seams in terrain, water, vegetation or biome transitions.
+
+If chunk generation is used, neighbouring chunks must agree on terrain elevation, river continuity, biome transitions and resource placement. Use world coordinates and seed-derived generation rather than independently randomizing each chunk.
+
+Do not generate a massive number of active gameplay entities merely to make the world appear populated.
+
+## 2.5 Viable starting locations
+
+Every generated starting area must be reasonably viable.
+
+The player should have access to a suitable combination of:
+
+- Buildable terrain.
+- Water or a reliable water source.
+- Basic food.
+- Wood or another appropriate construction resource.
+- Stone or an alternative suitable building material.
+- Space for initial housing and agriculture.
+- At least one reasonable path toward expansion.
+
+Rare resources should not necessarily appear near the starting settlement. Their scarcity should encourage exploration and trade.
+
+Provide sensible spawn validation and, if necessary, regenerate an unsuitable starting location or move the starting position to a viable region.
+
+---
+
+# PART 3 — A LIVING, ECOLOGICALLY BELIEVABLE WORLD
+
+## 3.1 Build a biome-aware ecosystem
+
+Every biome must have appropriate vegetation, wildlife, natural resources, agricultural potential and movement constraints.
+
+Do not spawn the same trees, crops, animals and resources uniformly throughout the map.
+
+Create data-driven biome definitions. Each biome should specify suitable terrain, vegetation, animal species, resource probabilities, soil conditions, crop suitability and movement modifiers.
+
+Examples:
+
+**Desert and arid regions**
+- Sparse drought-tolerant vegetation.
+- Limited surface water.
+- Appropriate desert wildlife.
+- Scarce fertile soil.
+- Higher difficulty for sustained agriculture.
+- Valuable trade corridors, mineral deposits or oases where suitable.
+
+**Sahel and open savanna**
+- Grasses, scattered trees and seasonal vegetation.
+- Suitable grazing areas.
+- Region-appropriate antelope and other wildlife.
+- Millet and sorghum agriculture where appropriate.
+- Cattle and other livestock where suitable.
+- Natural trade and migration corridors.
+
+**Woodland and forest**
+- Greater tree density.
+- Timber and suitable wild plants.
+- Forest-adapted wildlife.
+- Appropriate crop and gathering opportunities.
+- Slower movement through dense vegetation where justified.
+
+**Tropical rainforest**
+- Dense canopy and layered vegetation.
+- Moist soil and suitable fruit-bearing plants.
+- Forest-adapted wildlife.
+- Suitable regional crops, including yams where historically and ecologically appropriate.
+- Reduced visibility or movement through dense forest where practical.
+
+**Highlands and rocky terrain**
+- Slopes, exposed rock and elevation changes.
+- Suitable mineral deposits.
+- More difficult movement on steep terrain.
+- Limited buildable areas.
+- Natural defensive positions.
+
+**River valleys and floodplains**
+- Fertile soil and reliable water.
+- Suitable fish populations.
+- Riparian vegetation.
+- Agriculture appropriate to the campaign and period.
+- Potential transport routes and settlement sites.
+
+**Wetlands, lakes and deltas**
+- Marsh vegetation and wetland wildlife.
+- Fish and suitable aquatic resources.
+- Water-dependent movement restrictions.
+- Specialized farming opportunities where appropriate.
+
+These are design principles, not rigid templates. Allow local variation while preserving ecological logic.
+
+## 3.2 Make the environment react to player activity
+
+The world should visibly respond to economic activity.
+
+- Harvested trees should disappear or change into stumps.
+- Depleted deposits should visibly diminish or become unavailable.
+- Crops should change appearance as they grow and are harvested.
+- Heavy hunting should reduce nearby game availability.
+- Wildlife should move between suitable nearby habitats.
+- Settlement expansion should clear or transform land where appropriate.
+- Roads should influence travel and settlement connectivity.
+- Farms should visibly occupy and modify their plots.
+- Abandoned or depleted areas should look different from untouched areas where practical.
+
+Implement natural regeneration carefully. Trees, wild plants and wildlife may recover over time if their ecology permits it, but regeneration must not create unlimited resources that undermine the economy.
+
+Use simulation rules that are inexpensive enough for the target hardware.
+
+---
+
+# PART 4 — RESOURCE DISTRIBUTION AND EXPLORATION
+
+## 4.1 Create meaningful regional resource clusters
+
+Resource placement must be driven by terrain, biome, geology, water, vegetation and soil.
+
+Include appropriate resources such as:
+
+- Wood and timber.
+- Stone.
+- Iron ore or other appropriate mineral deposits.
+- Gold in limited, strategically valuable locations.
+- Clay.
+- Fertile soil.
+- Fish.
+- Wild fruits and edible plants.
+- Game animals and appropriate hunting resources.
+- Other resources needed by the existing or future crafting economy.
+
+Do not place all resources evenly across the map.
+
+Create resource clusters and regional specialization. One area may provide abundant timber but little stone; another may contain valuable minerals; another may have fertile farmland or strong grazing potential.
+
+This should encourage exploration, trade, expansion and competition over strategic territory.
+
+Resource rules must be configurable through data rather than requiring major rewrites of the generator.
+
+## 4.2 Resource accessibility and depletion
+
+- Keep resources visible when discovered and hide unexplored resources under fog of war.
+- Ensure resources are reachable by appropriate units.
+- Prevent resources from spawning inside buildings, on impassable terrain or in inaccessible map boundaries.
+- Give deposits finite reserves or clearly defined production limits where appropriate.
+- Make harvested resources affect the world visually.
+- Ensure workers stop gathering when a deposit is depleted.
+- Provide a clear response when a task cannot be completed.
+- Make resource regeneration consistent with the type of resource.
+
+The map generator must check that essential early-game resources are available near every starting settlement.
+
+## 4.3 Fog of war and strategic exploration
+
+Implement or improve fog of war if compatible with the existing architecture.
+
+The player should distinguish between:
+
+- Unexplored territory.
+- Previously explored but currently unseen territory.
+- Currently visible territory.
+
+Allow scouting, resource discovery and exploration to have meaningful strategic value.
+
+Rival settlements, distant trade routes, valuable resources, natural chokepoints and potential expansion locations should reward exploration.
+
+Avoid revealing the entire map immediately unless a game mode explicitly permits it.
+
+---
+
+# PART 5 — GRAPHICS AND VISUAL PRESENTATION
+
+## 5.1 Upgrade the existing isometric art style
+
+Improve the current game into a polished 2D or 2.5D isometric strategy game.
+
+Do not switch to a heavyweight full 3D engine simply to improve the visuals.
+
+Upgrade:
+
+- Terrain texture and colour variation.
+- Biome transitions.
+- Ground details.
+- Tree silhouettes, canopy variation and shadows.
+- Rock formations and ore deposits.
+- Rivers, lakes, shorelines and water animation.
+- Building shapes, roofs, materials and structural details.
+- Roads, paths and cultivated soil.
+- Unit proportions, clothing, tools and equipment.
+- Wildlife silhouettes and animations.
+- Selection rings, health indicators and interaction feedback.
+- Construction, harvesting and combat effects.
+- Lighting, shading, depth and environmental atmosphere.
+
+Buildings and units should remain recognizable at normal gameplay zoom.
+
+Use a consistent art direction across the game. Avoid making the environment look like a random collection of unrelated assets.
+
+## 5.2 Use appropriate rendering techniques
+
+Where suitable, use:
+
+- Layered Canvas drawing.
+- Procedurally generated illustrations.
+- Multi-part sprites.
+- Sprite sheets.
+- Cached terrain tiles.
+- Reusable building components.
+- Lightweight particle effects.
+- Isometric depth sorting.
+- Separate layers for ground, objects, units, effects and interface.
+
+Do not rely on emojis as the main graphics for buildings, animals, soldiers or important world objects.
+
+If external assets are needed, use appropriately licensed assets and keep licensing requirements documented. Prefer local assets that do not require paid APIs or runtime downloads.
+
+## 5.3 Animation and atmosphere
+
+Add smooth, lightweight animation for:
+
+- Villagers walking and working.
+- Soldiers moving and performing actions.
+- Animals wandering, grazing, resting and fleeing.
+- Trees and vegetation moving subtly.
+- Water flowing or rippling.
+- Smoke rising from cooking fires and workshops.
+- Crops progressing through growth stages.
+- Buildings changing appearance during construction.
+- Workers chopping wood, gathering resources, farming and mining.
+- Dust effects on dry terrain.
+- Construction and harvesting feedback.
+
+Use delta time or the existing timing system so that animation does not change speed with frame rate.
+
+Separate decorative animation from the core simulation where possible. Do not turn every blade of grass or decorative particle into a full simulation entity.
+
+## 5.4 Isometric depth and visual consistency
+
+Correctly sort objects and units by their world position and drawing depth so that:
+
+- Units can walk behind or in front of buildings correctly.
+- Trees do not obscure units incorrectly.
+- Building roofs and structures layer sensibly.
+- Selection indicators remain visible.
+- Hit testing matches what the player sees.
+
+Use consistent world-to-screen and screen-to-world coordinate conversions. Selection and movement must continue working at different zoom levels.
+
+---
+
+# PART 6 — SELECTION, INPUT AND UNIT CONTROLS
+
+Selection reliability is a high-priority gameplay requirement.
+
+Inspect the existing pointer handling, entity hit testing, selected-entity state, command system, camera controls and React event handling before making changes.
+
+## 6.1 Selecting units
+
+- Clicking a villager selects that villager.
+- Clicking a soldier selects that soldier.
+- Show a clear selection ring or outline.
+- Display the selected unit's name, role, health, current activity and available commands.
+- Clicking another unit switches selection to that unit.
+- Do not cause the camera to jump unexpectedly when selecting an entity.
+- Ensure the correct topmost interactive entity is selected when objects overlap.
+
+## 6.2 Deselecting and inspecting entities
+
+- Clicking genuinely empty, walkable terrain deselects the current unit in selection mode.
+- Remove the selection indicator and close or reset the relevant information panel.
+- Clicking empty ground must not leave stale selection state.
+- Clicking another selectable object must select or inspect that object according to the interaction rules.
+- Clicking a building opens its contextual information panel.
+- Clicking a resource deposit should show its type, remaining resources and relevant interactions.
+- Clicking wildlife should show its species and appropriate state where useful.
+- Clicking decorative scenery should behave consistently.
+
+Do not accidentally deselect a unit when the player is issuing a movement command. Use an explicit and understandable interaction state model.
+
+## 6.3 Movement and work commands
+
+On desktop:
+
+- Right-clicking valid terrain should issue a move command to the selected unit.
+- Workers should be able to receive appropriate gather, farm, build or work commands.
+- Add Stop, Hold Position and other relevant commands where suitable.
+- Add patrol or combat commands for appropriate military units.
+
+On Android:
+
+- Provide equivalent visible touch controls.
+- Use clear contextual buttons or command modes instead of requiring right-click.
+- Ensure that movement, selection, camera panning, zooming and building placement do not conflict.
+- Keep touch targets large enough to use comfortably on a phone or tablet.
+
+Only show commands that are valid for the selected entity.
+
+## 6.4 Reliable pointer and touch handling
+
+- Distinguish a click from a camera-drag gesture using a sensible movement threshold.
+- Prevent dragging the camera from accidentally selecting units.
+- Prevent a tap from triggering duplicate actions through overlapping mouse, pointer and touch handlers.
+- Convert pointer coordinates correctly under camera translation and zoom.
+- Use reliable hitboxes for units, buildings, resources and animals.
+- Handle overlapping isometric objects consistently.
+- Ensure selection works at different zoom levels.
+- Prevent accidental map interaction when using HUD panels or menus.
+
+Optional desktop improvements include box selection, useful keyboard shortcuts, double-click selection of nearby units of the same type and Escape-key behaviour.
+
+Implement optional controls only when they can coexist cleanly with the core interaction model.
+
+---
+
+# PART 7 — BUILDINGS AND SETTLEMENT INFRASTRUCTURE
+
+Expand the existing building system without breaking its current economy or placement mechanics.
+
+Buildings should have distinct purposes, construction costs, prerequisites, terrain restrictions, production or service functions, appropriate workers, storage capacity, upkeep and upgrade options where applicable.
+
+Use civilization-specific availability and appearance. Do not give every civilization identical buildings simply recoloured.
+
+## 7.1 Economy and storage
+
+Potential buildings include:
+
+- Storehouse.
+- Granary.
+- Marketplace.
+- Merchant post or trade station.
+- Roads and pathways.
+- Resource-specific storage.
+- Appropriate weighing or commercial facilities.
+
+Markets and trade posts must provide a real economic function. They should not generate unlimited wealth without an underlying trade, cost or resource mechanism.
+
+## 7.2 Food and agriculture
+
+Potential buildings include:
+
+- Farms.
+- Crop fields.
+- Granaries.
+- Livestock pens.
+- Fishing huts.
+- Hunters' camps.
+- Orchards or fruit-growing areas.
+- Mills or suitable food-processing facilities.
+- Irrigation and water infrastructure where appropriate.
+
+## 7.3 Crafts and industry
+
+Potential buildings include:
+
+- Woodworking workshops.
+- Pottery workshops.
+- Weaving or textile workshops.
+- Blacksmiths or appropriate metalworking facilities.
+- Stoneworking yards.
+- Clay-brick production.
+- Other specialist workshops suited to each civilization.
+
+Production chains must have consistent inputs and outputs. For example, metalworking should require relevant materials and should not produce finished goods from nothing.
+
+## 7.4 Civic and social buildings
+
+Potential buildings include:
+
+- Houses and larger residences.
+- Wells and water infrastructure.
+- Community gathering areas.
+- Market stalls.
+- Administrative buildings.
+- Educational and scholarly institutions.
+- Healing facilities or other suitable public services.
+
+## 7.5 Military and defensive structures
+
+Potential buildings include:
+
+- Watchtowers.
+- Gates.
+- Walls and palisades.
+- Training grounds.
+- Barracks or equivalent facilities.
+- Armories.
+- Defensive outposts.
+- Period-appropriate siege infrastructure where suitable.
+
+## 7.6 Cultural and civilization-specific buildings
+
+Potential buildings include:
+
+- Royal palaces or ruler's compounds.
+- Monumental public structures.
+- Craft guild complexes.
+- Historically appropriate religious, administrative or scholarly buildings.
+
+Each structure should have a genuine gameplay purpose. Do not fill the construction menu with decorative buildings that have no function.
+
+## 7.7 Building functionality
+
+Implement the following where appropriate:
+
+- Construction cost and time.
+- Terrain and biome restrictions.
+- Prerequisites.
+- Worker assignment.
+- Production and consumption.
+- Storage limits.
+- Upkeep.
+- Upgrades.
+- Construction progress.
+- Damage and repair.
+- Destruction and rebuilding.
+- Clear status indicators.
+- Civilization-specific visual designs.
+
+Building placement must check terrain, spacing and accessibility. Workers should be able to reach the building and any relevant resource or workplace.
+
+Display the exact resources the player lacks when a building cannot be afforded.
+
+---
+
+# PART 8 — AGRICULTURE AND FOOD ECONOMY
+
+Develop a detailed but understandable agricultural system.
+
+## 8.1 Regional crops
+
+Include crop types appropriate to the campaign, historical period and biome.
+
+Potential examples include:
+
+- Millet and sorghum in suitable Sahelian settings.
+- Rice where suitable.
+- Yams in appropriate regions.
+- Beans and other legumes.
+- Other historically plausible regional crops.
+
+Do not imply that every crop existed in every region or historical period.
+
+## 8.2 Farming gameplay
+
+Fields should progress through visible stages such as:
+
+1. Prepared soil.
+2. Planted crops.
+3. Growing crops.
+4. Mature crops ready for harvest.
+5. Harvested or fallow fields.
+
+Workers should travel to their assigned fields and perform farming tasks. Harvested food should be carried to an appropriate storage location.
+
+Farming should respond to:
+
+- Soil fertility.
+- Water access.
+- Terrain suitability.
+- Crop type.
+- Worker availability.
+- Seasonal effects, if implemented.
+- Storage capacity.
+- Food consumption.
+
+## 8.3 Food management
+
+Create a clear food economy covering:
+
+- Production.
+- Consumption.
+- Storage.
+- Population needs.
+- Crop yield.
+- Shortages and surpluses.
+- Optional trade of surplus food.
+
+Food should not appear automatically just because a farm exists. Workers, land, growth time and harvesting must matter.
+
+Avoid making the agricultural system so complicated that it overwhelms the player. Explain food production and shortages through clear HUD indicators and building panels.
+
+---
+
+# PART 9 — LIVESTOCK AND ANIMAL HUSBANDRY
+
+Create a separate domestic-animal system appropriate to each civilization and region.
+
+Potential animals include:
+
+- Cattle.
+- Goats.
+- Sheep.
+- Chickens and other appropriate domestic birds.
+- Donkeys or other suitable transport animals where historically appropriate.
+
+Do not make every animal available to every civilization or region without justification.
+
+## 9.1 Animal behaviour
+
+Animals should support lightweight behaviours such as:
+
+- Wandering within an appropriate area.
+- Grazing.
+- Resting.
+- Returning to a pen or designated area.
+- Feeding and husbandry.
+- Reproduction where appropriate and balanced.
+- Responding to nearby threats.
+- Moving toward suitable food or water.
+
+## 9.2 Animal production
+
+Depending on species and historical context, livestock may contribute products or services such as:
+
+- Food.
+- Milk.
+- Hides.
+- Wool.
+- Eggs.
+- Manure.
+- Transport.
+
+Each species should have only the products and functions appropriate to it.
+
+Livestock must consume resources or require care where relevant. It should not create unlimited products without costs or constraints.
+
+Provide useful animal-related buildings such as pens, enclosures and poultry areas.
+
+---
+
+# PART 10 — WILDLIFE AND HUNTING
+
+## 10.1 Region-appropriate wildlife
+
+Potential wildlife includes:
+
+- Antelope and gazelle species.
+- Elephants in suitable habitats.
+- Buffalo in appropriate environments.
+- Warthogs.
+- Monkeys and other forest wildlife.
+- Crocodiles and hippos around suitable waterways.
+- Wild birds.
+- Hares and other appropriate small animals.
+- Other plausible regional species.
+
+Use biome-based rules. Desert, Sahel, forest, savanna, highlands and wetlands must not share identical wildlife populations.
+
+Historical and ecological suitability should guide species availability. These examples are not a requirement to spawn every species in every campaign.
+
+## 10.2 Wildlife behaviour
+
+Use simple, performance-friendly behaviours:
+
+- Idle.
+- Wander.
+- Feed or graze.
+- Flee when threatened.
+- Move toward water where appropriate.
+- Avoid impassable terrain.
+- React to hunters or nearby activity.
+- Stay within plausible habitat ranges.
+
+Not every animal should be aggressive or huntable. Some wildlife should exist primarily to make the world feel alive.
+
+Avoid making wildlife movement so random that animals constantly wander into unsuitable biomes or across impossible terrain.
+
+## 10.3 Hunting profession and camps
+
+Create a hunter profession or hunters' camp.
+
+Hunters should:
+
+1. Search suitable nearby areas for available game.
+2. Select valid, reachable targets.
+3. Travel toward the target.
+4. Perform a visible hunting action.
+5. Collect an appropriate resource.
+6. Return resources to storage.
+7. Search for another target when appropriate.
+
+Hunters must stop or change activity if targets are unavailable, unreachable or depleted. Communicate the problem clearly.
+
+Do not allow hunting orders to target the player's livestock unless a separate, deliberate livestock-slaughter mechanic exists.
+
+## 10.4 Wildlife population management
+
+- Keep wildlife populations limited and biome-appropriate.
+- Make excessive hunting reduce nearby game availability.
+- Allow slow, balanced regeneration where suitable.
+- Prevent hunting from becoming an unlimited food exploit.
+- Avoid unnecessary simulation of distant animals.
+- Use non-graphic visual effects for hunting and animal death.
+
+The goal is a believable ecosystem, not an expensive wildlife simulator.
+
+---
+
+# PART 11 — VILLAGERS, WORKERS AND PATHFINDING
+
+Villagers should feel like active members of a functioning settlement rather than decorative units.
+
+Improve or implement:
+
+- Walking and working animations.
+- Pathfinding around buildings and terrain.
+- Automatic movement to assigned tasks.
+- Work assignments.
+- Resource gathering.
+- Construction and repair.
+- Farming and harvesting.
+- Hunting.
+- Carrying resources where practical.
+- Returning to storage.
+- Idling when no work is available.
+- Clear feedback when a task cannot be completed.
+
+Maintain meaningful roles for villagers, farmers, hunters, builders, gatherers, specialist workers and soldiers.
+
+Workers should not remain permanently stuck against buildings or repeatedly walk back and forth without progress.
+
+Use an efficient navigation system appropriate to the world size. An optimized grid-based approach, hierarchical navigation or another compatible solution may be suitable depending on the existing architecture.
+
+Do not calculate expensive paths for every unit on every frame.
+
+Instead:
+
+- Recalculate paths when destinations or navigation conditions change.
+- Reuse paths where appropriate.
+- Stagger expensive calculations across simulation updates.
+- Use spatial lookup to find nearby resources and workplaces.
+- Avoid expensive updates for distant or inactive entities.
+- Handle blocked paths and unreachable destinations.
+- Detect workers who have made no progress.
+- Provide a clear failure state and sensible retry behaviour.
+
+Workers must obey resource availability, storage limits, task requirements and movement restrictions.
+
+A farm worker should not harvest an unreachable field. A hunter should not pursue an animal across impassable terrain. A builder should not repeatedly attempt to construct a building that cannot be reached.
+
+---
+
+# PART 12 — DISTINCT AFRICAN CIVILIZATIONS AND CAMPAIGNS
+
+Expand the identity of the civilizations already present in the project: Mali, the Kingdom of Benin and ancient Egyptian dynasties.
+
+Do not treat these civilizations as contemporaneous. Present them through distinct historical campaigns or clearly labelled alternate-history scenarios.
+
+## 12.1 Mali and Sahelian settings
+
+Emphasize appropriate features such as:
+
+- Earth-toned and earthen-brick architecture.
+- Timber details.
+- Sahelian landscapes.
+- River settlements.
+- Trade routes.
+- Appropriate agriculture and livestock.
+- Commerce and resource exchange.
+- Scholarly and commercial institutions where suitable to the campaign.
+
+## 12.2 Kingdom of Benin and forest settings
+
+Emphasize appropriate features such as:
+
+- Lush forest and woodland environments.
+- Regionally suitable timber and earth construction.
+- Palace compounds and courtyards.
+- Defensive earthworks where appropriate.
+- Craft production.
+- Regionally suitable agriculture.
+- Distinctive architectural forms and decorative traditions.
+
+Do not reduce the Kingdom of Benin to generic huts in a forest. Its buildings, craftsmanship, administration and cultural identity should be represented with care.
+
+## 12.3 Ancient Egyptian settings
+
+Emphasize appropriate features such as:
+
+- Nile-based agriculture.
+- Floodplains and river settlements.
+- Irrigation systems appropriate to the selected period.
+- Mud-brick and stone construction.
+- Historically grounded architecture.
+- Suitable crops and livestock.
+- River transport and trade.
+- Period-appropriate administration and monumental construction.
+
+Do not combine features from unrelated Egyptian dynasties without explanation.
+
+## 12.4 Gameplay identity
+
+Avoid giving every civilization identical buildings, units and economic bonuses with only different colours.
+
+Introduce meaningful differences in:
+
+- Architecture and materials.
+- Clothing and equipment.
+- Starting conditions.
+- Economic strengths.
+- Unique buildings.
+- Available crops and livestock.
+- Military units and tactical advantages.
+- Trade and development systems.
+- Campaign objectives.
+- Environmental challenges.
+
+Use research and historical care to inform the design. When historical evidence is uncertain, avoid presenting invented details as established fact.
+
+The game may use alternate history for gameplay, but clearly distinguish it from historically grounded campaigns.
+
+---
+
+# PART 13 — RIVAL SETTLEMENTS, TRADE AND STRATEGIC TERRITORY
+
+Expand the world beyond the player's settlement.
+
+Where supported by the current architecture, add or improve:
+
+- Rival settlements.
+- Independent communities.
+- Distant outposts.
+- Trade routes.
+- Resource-rich strategic regions.
+- Natural chokepoints.
+- Defensible terrain.
+- River crossings.
+- Expansion locations.
+- Settlement relationships and competition.
+
+Rivals should operate through an understandable and reasonably efficient simulation.
+
+They may gather resources, expand, trade, defend themselves and compete for strategic territory according to the game mode.
+
+Do not simulate every distant rival villager with the same detail as the player's nearby units. Use simplified economic or regional updates for distant settlements when appropriate.
+
+Trade must involve actual resources, prices or agreed exchanges. Do not create an economy where trade posts simply produce unlimited money.
+
+Keep these systems extensible for future multiplayer without implementing an entire online backend in this upgrade.
+
+---
+
+# PART 14 — USER INTERFACE AND ANDROID EXPERIENCE
+
+Redesign the gameplay interface around clarity, accessibility and mobile usability.
+
+Improve:
+
+- Resource display.
+- Population and housing information.
+- Food supply and consumption.
+- Construction menu.
+- Selected-unit panel.
+- Selected-building panel.
+- Unit command controls.
+- Building prerequisites.
+- Notifications.
+- Construction queues.
+- Tooltips.
+- Pause and speed controls.
+- Minimap, if implemented.
+- Camera controls.
+- Save and load interface.
+- Warnings for shortages and blocked tasks.
+
+## 14.1 Mobile-first controls
+
+The game is intended for Android phones and tablets.
+
+- Use sufficiently large touch targets.
+- Make text readable at common screen sizes.
+- Avoid overcrowding the HUD.
+- Provide a clear way to select units and buildings.
+- Provide a clear way to issue movement and work commands.
+- Support intuitive camera panning and zooming.
+- Make building placement reliable on touchscreens.
+- Keep important controls accessible without covering most of the world.
+- Adapt the interface to portrait or landscape only if the game design and layout can support it reliably.
+
+Prioritize landscape gameplay if it best suits the isometric RTS layout, but do not force an unusable layout on smaller devices.
+
+## 14.2 Clear feedback
+
+When an action succeeds, provide suitable feedback.
+
+When an action fails, explain why.
+
+Examples:
+
+- Insufficient wood.
+- Insufficient food or materials.
+- Terrain unsuitable for construction.
+- Resource depleted.
+- No available worker.
+- Destination unreachable.
+- Building prerequisite missing.
+- Storage full.
+- No valid hunting target.
+- Farm unsuitable for the selected crop.
+
+Group buildings by purpose instead of presenting a huge, confusing list.
+
+Use consistent icons and labels. Do not rely exclusively on colour to communicate critical information.
+
+---
+
+# PART 15 — PERFORMANCE AND TECHNICAL ARCHITECTURE
+
+The game must remain responsive on modest hardware, including integrated-graphics laptops and supported Android devices.
+
+Inspect the current renderer and simulation before deciding which optimizations are necessary.
+
+Prioritize:
+
+- Viewport culling.
+- Efficient Canvas drawing.
+- Terrain and sprite caching.
+- Spatial indexing for entity selection and nearby-resource queries.
+- Avoiding unnecessary React re-renders.
+- Sensible simulation tick rates.
+- Lightweight animation.
+- Efficient pathfinding.
+- Simplified updates for distant entities.
+- Proper event-listener cleanup.
+- Proper animation-loop cleanup.
+- Avoiding memory leaks.
+- Efficient save/load operations.
+- Sensible limits on active entities and particle effects.
+
+Separate the following concerns where practical:
+
+1. World generation.
+2. Simulation and game rules.
+3. Entity state.
+4. Rendering.
+5. Input and commands.
+6. Navigation and pathfinding.
+7. Persistence and save/load.
+8. UI presentation.
+
+Do not create unnecessary abstraction for its own sake. Improve separation where it helps testing, performance, maintainability or future multiplayer.
+
+For future multiplayer readiness, keep simulation rules as independent of rendering as practical. However, **do not implement online lobbies, server authority, networking or account systems as part of this upgrade unless explicitly requested later**.
+
+Do not introduce a heavyweight engine simply to improve visuals.
+
+If a requested feature is too expensive for the target hardware, implement a simpler working version first and document the limitation.
+
+---
+
+# PART 16 — SAVE/LOAD AND DATA INTEGRITY
+
+Preserve the existing save/load system and extend it carefully.
+
+Save relevant state such as:
+
+- World seed and generation settings.
+- Terrain or the information required to regenerate it consistently.
+- Player settlement and buildings.
+- Units and their states.
+- Resource quantities and depletion.
+- Crop stages.
+- Livestock and relevant animal state.
+- Discovered territory and fog of war.
+- Rival settlements where supported.
+- Game time and other essential simulation state.
+
+Avoid saving unnecessary decorative animation state if it can be safely reconstructed.
+
+Use versioned save data if the schema changes.
+
+Test saving and loading with the new world and economy. A save must not silently restore a different map or reset major gameplay progress.
+
+If full compatibility with older saves is impossible, explain the reason and provide a safe fallback.
+
+---
+
+# PART 17 — TESTING AND ACCEPTANCE CRITERIA
+
+Verify the actual implementation rather than assuming the code works.
+
+After each stage, run the relevant project checks, such as the existing lint, type-check, test and build scripts. Do not invent successful results. If a command cannot run, state that clearly.
+
+## World generation
+
+Confirm that:
+
+1. The world is substantially larger than the original.
+2. The same seed produces a consistent world.
+3. Biomes transition naturally.
+4. Rivers, lakes and floodplains are geographically coherent.
+5. Resource clusters follow terrain and biome rules.
+6. Wildlife follows habitat rules.
+7. Starting locations have essential resources.
+8. Important resources are not trapped in inaccessible terrain.
+9. Chunk or region boundaries, if used, are not visibly disconnected.
+10. Exploration and camera navigation work across the larger map.
+
+## Selection and controls
+
+Confirm that:
+
+11. Clicking a villager selects the correct unit.
+12. Clicking a soldier selects the correct unit.
+13. Clicking empty walkable terrain clears selection in selection mode.
+14. Clicking another entity selects or inspects the correct entity.
+15. Clicking a building opens the correct panel.
+16. Camera dragging does not accidentally select entities.
+17. Zooming does not break hit testing.
+18. Desktop movement commands work.
+19. Android touch controls provide equivalent functionality.
+20. HUD interactions do not unintentionally affect the world.
+
+## Economy and simulation
+
+Confirm that:
+
+21. Building placement respects terrain and resource restrictions.
+22. Workers can navigate to valid tasks.
+23. Workers stop or report failure when tasks are impossible.
+24. Resource gathering updates both the economy and world appearance.
+25. Farming progresses through real growth stages.
+26. Food is stored and consumed consistently.
+27. Hunting uses available wildlife and respects depletion.
+28. Livestock provides only its appropriate products.
+29. Production buildings use the correct inputs and outputs.
+30. Storage capacity and resource accounting remain consistent.
+
+## Visuals and performance
+
+Confirm that:
+
+31. Isometric depth sorting is correct.
+32. Buildings, units and terrain do not overlap incorrectly.
+33. Animations behave consistently at different frame rates.
+34. The interface is readable at different supported screen sizes.
+35. The map remains responsive as the world and population grow.
+36. Save/load preserves relevant game state.
+37. No obvious memory leaks or repeated event handlers are introduced.
+
+Add or update automated tests for critical map-generation rules, entity selection, resource gathering, economy calculations and save/load behaviour where practical.
+
+Do not claim a test passed unless it was actually run and passed.
+
+---
+
+# PART 18 — IMPLEMENTATION ROADMAP
+
+Implement the upgrade in the following order.
+
+## Stage 1 — Core World, Selection and Controls
+
+Prioritize:
+
+- Inspecting the complete codebase.
+- Fixing entity hit testing.
+- Fixing selection and deselection.
+- Fixing click-versus-drag handling.
+- Improving desktop and touch input reliability.
+- Expanding the continuous world.
+- Implementing coherent biome generation.
+- Improving river and terrain continuity.
+- Distributing resources according to terrain and biome.
+- Ensuring starting-area viability.
+- Improving camera movement, zoom and navigation.
+- Adding or improving viewport culling and essential world-generation performance.
+
+This stage must produce a functioning improvement, not merely a design plan.
+
+## Stage 2 — Graphics and Animation
+
+Improve:
+
+- Terrain rendering.
+- Water.
+- Trees and vegetation.
+- Building appearance.
+- Lighting and shadows.
+- Isometric depth ordering.
+- Unit and animal animations.
+- Construction and gathering effects.
+- Environmental atmosphere.
+- Selection and interaction feedback.
+
+## Stage 3 — Functional Economy and Ecosystem
+
+Implement or improve:
+
+- Farming and crop growth.
+- Livestock and animal husbandry.
+- Wildlife behaviour.
+- Hunting.
+- Resource depletion and regeneration.
+- Functional buildings.
+- Production chains.
+- Food storage and consumption.
+- Regional economic differences.
+
+## Stage 4 — Villagers, Interface and Performance
+
+Improve:
+
+- Pathfinding.
+- Work assignments.
+- Construction and repair.
+- Resource carrying.
+- Mobile touch controls.
+- HUD and contextual panels.
+- Minimap and fog of war where practical.
+- Spatial indexing.
+- Distant-entity simulation.
+- Performance and memory management.
+
+## Stage 5 — Full Integration and Testing
+
+- Run build and other available project checks.
+- Test the world generator with multiple seeds.
+- Test selection and commands.
+- Test resource accessibility and depletion.
+- Test construction, farming, hunting and livestock.
+- Test saving and loading.
+- Test desktop and Android-sized layouts.
+- Fix regressions.
+- Update documentation.
+- Produce an accurate list of completed features and outstanding work.
+
+---
+
+# FINAL INSTRUCTIONS — BEGIN NOW
+
+Start by inspecting the existing project and identifying its architecture, key files, working systems and current limitations.
+
+Then implement **Stage 1 only**.
+
+Do not stop after returning a plan. Make the actual code changes in the existing project, run the available checks and report their real results.
+
+Preserve the existing game's identity and working features. Avoid unnecessary rewrites. If a major change is required, explain why and keep it as small and safe as possible.
+
+Before finishing Stage 1, verify that the enlarged continuous world, terrain generation, resource placement, camera and selection controls work together.
+
+Keep a checklist of the remaining stages so development can continue without losing requirements.
+
+**The final goal is African Crowns: Empires of the Sun as a large, continuous, visually rich, playable African historical strategy game with believable landscapes, functioning settlements, intelligent workers, a living ecosystem, meaningful economic decisions and a distinctive identity—not merely a prettier screenshot or a collection of non-functional features.**

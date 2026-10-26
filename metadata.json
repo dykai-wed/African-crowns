@@ -1,0 +1,6 @@
+{
+  "name": "African Crowns: Empires of the Sun",
+  "description": "A historically inspired African kingdom-building and real-time strategy mobile game featuring settlement construction, economic management, and siege warfare.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

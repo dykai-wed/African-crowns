@@ -1,0 +1,1293 @@
+# PROJECT: AFRICAN CROWNS — EMPIRES OF THE SUN
+
+## YOUR ROLE
+
+Act as a senior mobile game developer, real-time strategy game designer, gameplay programmer, UI/UX designer, historical research consultant, and software architect.
+
+Your task is to build a genuinely playable, visually impressive, historically inspired African kingdom-building and real-time strategy game called:
+
+AFRICAN CROWNS: EMPIRES OF THE SUN
+
+The game takes inspiration from the settlement construction, economic management, fortification building, military strategy, siege gameplay, and campaign structure of classic castle-building strategy games such as Stronghold Crusader.
+
+However, this must be an original game with its own identity, mechanics, architecture, art direction, civilizations, progression systems, and historical setting.
+
+Do not copy proprietary assets, maps, characters, sounds, interfaces, or other protected content from existing games.
+
+The game must celebrate the diversity, engineering, trade, political organization, architecture, craftsmanship, agriculture, and cultural achievements of African civilizations.
+
+This is a serious game-development project, not a static prototype or a collection of attractive menus.
+
+The primary goal is to deliver a playable Android-friendly game with functioning construction, resource management, population simulation, economic systems, AI-controlled rivals, and real-time battles.
+
+Build a small but complete game first. Expand it through carefully tested iterations.
+
+---
+
+# 1. PLATFORM AND TECHNICAL DIRECTION
+
+Build this project as a mobile-first, installable Progressive Web App (PWA) using Google AI Studio's full-stack web application mode.
+
+The target devices are Android smartphones.
+
+The game must run in a mobile browser, support installation on the Android home screen where supported, and provide an app-like experience.
+
+Use the following technical direction:
+
+- Frontend: React and TypeScript.
+- Game rendering: HTML5 Canvas or another lightweight 2D rendering solution appropriate for real-time strategy games.
+- Backend: Node.js when required for online functionality.
+- Multiplayer infrastructure: a suitable authoritative server architecture, with Firebase services where appropriate.
+- Persistence: local save support for single-player games, plus server-side persistence for online accounts and multiplayer sessions.
+- Graphics: original procedural artwork, original SVG assets, CSS illustrations, and generated game assets that can legally be used in the project.
+- Audio: original or properly licensed audio, with a functional mute and volume system.
+
+Choose stable, compatible libraries only when they materially improve the game.
+
+Avoid unnecessary dependencies and heavyweight 3D engines.
+
+Do not require a dedicated GPU.
+
+Do not make the game depend on a Gemini API call for every movement, battle, resource calculation, or building action. Ordinary gameplay must run through deterministic game logic.
+
+The game should remain playable if optional AI-generated dialogue or other remote AI features are unavailable.
+
+Do not expose secret keys in client-side code.
+
+IMPORTANT: Online multiplayer requires a real backend and server-authoritative game state. Do not simulate multiplayer by displaying fake players or pretending that local computer-controlled opponents are connected users.
+
+---
+
+# 2. GAME VISION
+
+The player begins as the ruler of a modest African settlement.
+
+There are a few households, limited food, basic production facilities, nearby farmland, natural resources, and a small number of available workers.
+
+The player's task is to transform this settlement into a prosperous fortified kingdom.
+
+The player must:
+
+1. Establish a reliable food supply.
+2. Build homes and attract settlers.
+3. Organize labor and production.
+4. Develop trade and accumulate wealth.
+5. Construct defensive walls and fortified gates.
+6. Recruit and supply a capable army.
+7. Explore the surrounding region.
+8. Negotiate with rival kingdoms.
+9. Defend against raids and rival rulers.
+10. Expand territory and establish a lasting dynasty.
+
+Every decision should have consequences.
+
+A large army without a strong economy should be expensive to maintain.
+
+A wealthy kingdom without adequate defenses should be vulnerable.
+
+A heavily fortified city without sufficient food should struggle to survive.
+
+A kingdom with prosperous trade, a content population, a stable economy, and sensible defenses should have a meaningful strategic advantage.
+
+The central gameplay loop is:
+
+GATHER → BUILD → PRODUCE → TRADE → EXPAND → DEFEND → PROSPER.
+
+---
+
+# 3. VISUAL IDENTITY AND ART DIRECTION
+
+Create an attractive, immersive 2D isometric or carefully designed three-quarter top-down strategy game.
+
+The game should feel like a miniature living African kingdom.
+
+The visual style should combine:
+
+- Beautiful historical illustrations.
+- Warm African earth tones.
+- Golden sunlight.
+- Terracotta and ochre surfaces.
+- Sandstone, mud-brick, timber, and earthen architecture.
+- Lush vegetation where geographically appropriate.
+- Rivers, savannahs, grasslands, dry plains, and desert landscapes.
+- Historically inspired textiles, decorative patterns, and architectural details.
+- Animated villagers, workers, merchants, guards, and soldiers.
+- Smoke rising from workshops.
+- Crops growing over time.
+- Animals moving around farms.
+- Merchants arriving at trading posts.
+- Buildings developing visibly as construction progresses.
+
+Use a cohesive art direction rather than mixing unrelated art styles.
+
+The game must not depict all African societies as interchangeable.
+
+Mali-inspired settlements should have architecture and landscapes appropriate to their Sahelian and West African setting.
+
+Benin-inspired settlements should incorporate historically informed elements associated with Edo royal architecture, organized settlement planning, craftsmanship, and defensive earthworks.
+
+Egyptian settlements should draw from the architecture, landscape, materials, and agricultural systems of the selected historical period.
+
+Research historical references when possible. Clearly distinguish documented history from imaginative reconstruction.
+
+Avoid inaccurate or stereotypical representations of African societies.
+
+Do not use generic European castles with African names attached.
+
+Create original African-inspired fortifications, gates, walls, royal compounds, settlements, and defensive structures.
+
+The main settlement must be visually readable on a small Android screen.
+
+Buildings should have recognizable silhouettes.
+
+Workers and soldiers must be distinguishable without zooming in excessively.
+
+Use simple, attractive animation rather than expensive 3D graphics.
+
+---
+
+# 4. CIVILIZATIONS AND CAMPAIGNS
+
+Create a civilization-selection screen featuring three initial playable civilizations.
+
+## CIVILIZATION A: THE MALI EMPIRE
+
+Historical inspiration: the Mali Empire during its medieval period.
+
+Environment:
+Sahelian grasslands, savannah, river valleys, and dry trading routes.
+
+Architectural direction:
+Mud-brick structures, timber-supported earthen architecture, courtyards, market buildings, and historically inspired monumental religious and scholarly architecture.
+
+Economic strengths:
+- Gold production and trade.
+- Salt and other valuable commodities.
+- Merchant activity.
+- Scholarship and administration.
+- Long-distance trade routes.
+
+Unique gameplay mechanic:
+TRANS-SAHARAN TRADE.
+
+Establish trade routes between settlements and trading posts to generate wealth.
+
+Trade routes must have travel times, costs, and potential disruptions.
+
+Merchants should not generate money instantly without performing a simulated trading activity.
+
+Civilization bonus:
+Improved trading efficiency and additional income from established trade routes.
+
+Campaign identity:
+Build a prosperous trading kingdom, secure important routes, develop urban centers, and balance commercial expansion with territorial defense.
+
+## CIVILIZATION B: THE KINGDOM OF BENIN
+
+Historical inspiration: the historical Edo kingdom, particularly its developed royal institutions, craftsmanship, and defensive settlement traditions.
+
+Environment:
+Forest-edge landscapes, cultivated land, waterways where appropriate, and dense vegetation.
+
+Architectural direction:
+Royal compounds, timber structures, courtyards, craft workshops, locally appropriate defensive earthworks, and historically informed settlement layouts.
+
+Economic strengths:
+- Specialized craftsmanship.
+- Agricultural production.
+- Organized markets.
+- Royal administration.
+- Trade in crafted goods.
+
+Unique gameplay mechanic:
+ROYAL WORKSHOPS.
+
+Develop specialized workshops that produce valuable goods and improve the efficiency of selected economic activities.
+
+Civilization bonus:
+Improved craft production and stronger defensive planning options.
+
+Campaign identity:
+Develop a carefully organized kingdom, protect its productive heartland, and use craftsmanship, administration, and trade to increase prosperity.
+
+Do not treat Benin as a generic tribal faction. Present it as a complex historical kingdom with organized institutions and a distinctive cultural identity.
+
+## CIVILIZATION C: THE EGYPTIAN DYNASTIES
+
+Historical inspiration:
+Selected periods of ancient Egyptian civilization. The campaign must identify the historical period being represented rather than mixing thousands of years of Egyptian history indiscriminately.
+
+Environment:
+The Nile Valley, fertile floodplains, arid surroundings, and desert trade routes.
+
+Architectural direction:
+Mud-brick houses, granaries, administrative buildings, temples, monumental structures, and settlement designs appropriate to the chosen period.
+
+Economic strengths:
+- Nile-based agriculture.
+- Irrigation.
+- Grain storage.
+- River transport.
+- Centralized administration.
+
+Unique gameplay mechanic:
+THE NILE FLOOD CYCLE.
+
+Seasonal changes influence agricultural productivity.
+
+Players must plan food storage, planting, irrigation, and construction around changing conditions.
+
+Civilization bonus:
+Improved agricultural planning and additional benefits from effective granary management.
+
+Campaign identity:
+Develop a stable river kingdom, organize large agricultural projects, manage seasonal risks, and extend royal authority.
+
+## CIVILIZATION BALANCE
+
+Every civilization must be viable.
+
+No civilization should automatically win because it has the strongest units or the most profitable buildings.
+
+Economic advantages must be balanced by meaningful limitations.
+
+The civilizations may differ in their architecture, economy, campaign objectives, and strategic options without being reduced to simplistic stereotypes.
+
+---
+
+# 5. THE FIRST PLAYABLE MAP
+
+Create a functioning single-player scenario called:
+
+THE FIRST CROWN
+
+The player begins with:
+
+- One small royal compound.
+- A limited number of villagers.
+- A modest stockpile of food.
+- A small quantity of construction materials.
+- A small treasury.
+- Several empty building plots.
+- Nearby farmland.
+- Access to timber or other locally appropriate construction resources.
+- A natural water source.
+- One road leading toward the wider world.
+- A rival settlement visible at the edge of the map.
+
+The environment must contain meaningful terrain and obstacles.
+
+The player should be able to pan around the map and zoom in or out.
+
+The map must not be a static background image.
+
+Buildings must occupy actual game-world positions.
+
+Resources must have locations or production sources.
+
+Construction must change the world.
+
+The player must be able to lose the scenario if the kingdom collapses or its central stronghold is captured.
+
+Provide a restart button.
+
+Create a short introductory tutorial that teaches the player how to establish a functioning settlement.
+
+The tutorial should use contextual instructions rather than lengthy walls of text.
+
+---
+
+# 6. RESOURCE AND ECONOMIC SYSTEM
+
+Implement a functioning economy with the following core resources:
+
+1. Food.
+2. Timber or locally appropriate building materials.
+3. Stone or other suitable construction materials.
+4. Gold.
+5. Population.
+6. Prosperity or public satisfaction.
+
+Additional civilization-specific resources may be added after the core economy works.
+
+Each resource must have a clear purpose.
+
+## FOOD
+
+Food sustains the population.
+
+Food is produced by farms, fishing facilities, livestock operations, or other appropriate sources.
+
+Consumption should depend on the number of residents and relevant game modifiers.
+
+When food becomes scarce, public satisfaction should fall.
+
+Prolonged shortages should reduce population growth and can eventually threaten the kingdom.
+
+Do not eliminate the need for food merely because the player owns a farm. Production must be calculated over time.
+
+## TIMBER AND CONSTRUCTION MATERIALS
+
+Use locally appropriate materials.
+
+Timber may be obtained from sustainable resource areas or purchased through trade.
+
+Construction materials are consumed when buildings and defenses are completed.
+
+Do not allow players to construct unlimited buildings without paying their resource costs.
+
+## GOLD
+
+Gold is used for trading, certain construction projects, recruitment, diplomacy, and military upkeep.
+
+The player should have multiple ways to earn gold.
+
+These may include trade, taxation, specialized production, and campaign rewards.
+
+## POPULATION
+
+Track:
+
+- Total population.
+- Available workers.
+- Workers assigned to production.
+- Workers assigned to construction.
+- Military personnel.
+- Population capacity.
+- Food consumption.
+- Public satisfaction.
+
+The population must have a meaningful relationship with the economy.
+
+Workers assigned to one task should not simultaneously perform another full-time task unless the game explicitly permits it.
+
+When all available workers are occupied, the player must make choices about priorities.
+
+## ECONOMIC UI
+
+Display the main resources in a compact, readable mobile interface.
+
+Resource values must update immediately after relevant actions.
+
+Show useful explanations when the player cannot afford an action.
+
+For example:
+
+"Not enough timber. You need 10 more timber to construct this building."
+
+Never allow resources to become negative unless a specifically designed mechanic permits it.
+
+---
+
+# 7. BUILDING SYSTEM
+
+Construction is one of the game's central features.
+
+The player must be able to select a building from a construction menu, preview its placement, rotate it where supported, and place it on the map.
+
+Buildings must be represented by distinct visual assets.
+
+The first version must include:
+
+## RESIDENTIAL BUILDINGS
+
+Houses:
+Increase housing capacity.
+
+Better housing:
+Provide greater capacity or improved prosperity at a higher cost.
+
+## FOOD PRODUCTION
+
+Farm:
+Produces food over time.
+
+Granary:
+Stores food and reduces losses where appropriate.
+
+Fishing facility:
+Available only near suitable water.
+
+Livestock facility:
+Provides food or other agricultural products after the appropriate mechanics are implemented.
+
+## RESOURCE PRODUCTION
+
+Lumber camp:
+Produces timber from appropriate resource areas.
+
+Quarry:
+Produces stone where suitable deposits exist.
+
+Gold-producing facility:
+Available in appropriate scenarios and resource locations.
+
+## ECONOMIC BUILDINGS
+
+Market:
+Supports local trade and economic development.
+
+Trading post:
+Enables specialized trade and access to external markets.
+
+Workshop:
+Produces crafted goods or improves the production of other buildings.
+
+## CIVIC BUILDINGS
+
+Royal compound:
+The central seat of authority and a key scenario objective.
+
+Administrative building:
+Improves taxation, administration, or population management.
+
+Cultural or scholarly building:
+Supports selected civilization-specific progression systems.
+
+## DEFENSIVE BUILDINGS
+
+Defensive wall segments.
+
+Gates.
+
+Watchtowers.
+
+Defensive towers or platforms appropriate to the selected civilization.
+
+Barracks or military training facilities.
+
+Additional fortifications may be added in later versions.
+
+## BUILDING RULES
+
+Every building must have:
+
+- A construction cost.
+- A footprint.
+- A construction duration.
+- A valid placement area.
+- A functional purpose.
+- An appropriate visual representation.
+- A selection panel.
+- A way to display its current status.
+
+Construction must take time.
+
+For the initial version, a simple worker-assisted progress system is sufficient.
+
+The game must prevent buildings from overlapping illegally or appearing outside the playable map.
+
+Roads should connect important structures where the game requires them.
+
+A building should not provide benefits until it reaches the appropriate operational state.
+
+The construction system must be functional rather than decorative.
+
+---
+
+# 8. POPULATION SIMULATION
+
+Villagers should make the settlement feel alive.
+
+Implement a lightweight simulation with the following behaviors:
+
+- Walking between homes and workplaces.
+- Traveling to farms, markets, workshops, and other buildings.
+- Performing simple work animations or state changes.
+- Moving along available paths.
+- Returning to homes or appropriate locations when idle.
+- Avoiding buildings and obstacles.
+
+Use simple, deterministic pathfinding appropriate for the map size.
+
+A grid-based pathfinding system is acceptable.
+
+Do not attempt to simulate hundreds of highly detailed individual agents in the first version.
+
+Start with a modest population and ensure that the game remains smooth.
+
+Workers should have logical assignments.
+
+If a worker cannot reach a building, report the problem clearly or find another valid path.
+
+The settlement should remain playable on ordinary Android phones.
+
+Use pooling, throttled simulation, or other lightweight techniques when necessary.
+
+---
+
+# 9. HAPPINESS AND KINGDOM STABILITY
+
+Public satisfaction should reflect the quality of life in the settlement.
+
+Factors include:
+
+- Food availability.
+- Housing availability.
+- Taxation.
+- Employment.
+- Security.
+- Access to markets.
+- General prosperity.
+
+Allow the player to select taxation levels.
+
+Higher taxation should produce more revenue but may reduce public satisfaction.
+
+Low taxation should improve satisfaction but limit the royal treasury.
+
+If satisfaction remains high and housing and food are sufficient, population growth may occur.
+
+If satisfaction remains low, growth should slow and residents may leave.
+
+Display the reasons behind changes in satisfaction.
+
+Do not use a single unexplained happiness number.
+
+The player should be able to open a kingdom overview panel and understand what is helping or harming the settlement.
+
+---
+
+# 10. MILITARY AND REAL-TIME BATTLE SYSTEM
+
+Implement an accessible, real-time strategy battle system.
+
+Combat must be strategic, readable, and non-graphic.
+
+Do not create detailed depictions of injuries.
+
+The first version should focus on positioning, unit orders, fortification, and objective-based combat.
+
+Include a small initial roster of historically inspired unit roles, adapted carefully to the selected civilization and campaign period.
+
+Possible roles include:
+
+- Infantry.
+- Ranged support.
+- Scouts.
+- Defensive guards.
+
+Use fictionalized or historically researched unit names when necessary.
+
+Do not mix units from unrelated historical periods without clearly labelling the scenario as alternate history.
+
+## RECRUITMENT
+
+Military units require:
+
+- Recruitment costs.
+- Available population or appropriate recruitment capacity.
+- Training time.
+- Ongoing upkeep where applicable.
+
+Recruitment should not produce unlimited free troops.
+
+## UNIT CONTROL
+
+The player must be able to:
+
+- Select an individual unit or group.
+- Move units to a destination.
+- Issue attack orders against valid enemy targets.
+- Defend a designated area.
+- Return units to a position.
+- Inspect unit health and status.
+
+Provide large touch-friendly controls.
+
+Support drag selection where practical, but also provide a tap-based alternative.
+
+Do not require precise mouse movements.
+
+## COMBAT LOGIC
+
+Units should have:
+
+- Health.
+- Movement speed.
+- Attack range where applicable.
+- Attack strength.
+- Attack cooldown.
+- Defense.
+- Morale or another simple combat-state mechanic.
+
+The combat system must be deterministic and reasonably balanced.
+
+Units must not attack through solid walls or across impossible distances.
+
+Implement basic target selection, movement, attack resolution, and defeat conditions.
+
+Do not create elaborate combat mechanics until basic unit control works.
+
+---
+
+# 11. FORTIFICATIONS AND SIEGE GAMEPLAY
+
+Fortifications should be central to the game's identity.
+
+The player must be able to plan and construct a defensive settlement rather than simply placing buildings wherever there is space.
+
+Implement:
+
+- Wall placement.
+- Gate placement.
+- Tower placement.
+- Defensible entrances.
+- Openings that permit friendly movement.
+- Collision detection.
+- Basic defensive advantages.
+
+Walls should obstruct ordinary movement where appropriate.
+
+Gates should allow controlled passage.
+
+Towers should provide a defensive advantage consistent with their cost and design.
+
+Enemies should recognize obstacles and attempt reasonable alternative routes.
+
+A wall should not be merely decorative.
+
+For the first version, enemy forces may attempt to reach the royal compound or another designated objective through available entrances.
+
+If a route is blocked, enemies should attempt to find a valid path or attack a designated destructible obstacle where that mechanic has been implemented.
+
+Do not introduce complex siege engines until the basic construction, pathfinding, and combat systems are reliable.
+
+Later versions may include historically appropriate siege equipment, breaches, defensive repairs, and specialized fortifications.
+
+---
+
+# 12. COMPUTER-CONTROLLED RIVALS
+
+Create an AI-controlled rival kingdom.
+
+The rival should follow understandable strategic priorities.
+
+Its behavior should include:
+
+1. Developing its own economy.
+2. Establishing basic production.
+3. Building a modest defensive perimeter.
+4. Recruiting units when it can afford them.
+5. Responding to nearby threats.
+6. Attacking when it has a reasonable advantage.
+7. Defending its own important structures.
+8. Expanding or trading where appropriate.
+
+The AI must operate under the same fundamental economic rules as the player.
+
+It should not receive unlimited resources or instantly spawn troops.
+
+Implement a simple state-based AI with states such as:
+
+- Developing.
+- Defending.
+- Gathering resources.
+- Preparing for conflict.
+- Attacking.
+- Recovering.
+
+The rival must be capable of making mistakes.
+
+Its behavior should be understandable and fair.
+
+Include difficulty settings:
+
+EASY:
+Slower economic development and less aggressive decisions.
+
+NORMAL:
+Balanced development, defense, and aggression.
+
+HARD:
+More efficient decisions and stronger strategic coordination without cheating through unlimited resources.
+
+The first version only needs one rival faction and one functioning enemy scenario.
+
+---
+
+# 13. DIPLOMACY AND TRADE
+
+Build the foundation for interactions with neighboring kingdoms.
+
+Initially support:
+
+- Trade agreements.
+- Requests for trade access.
+- Diplomatic relations.
+- Peaceful coexistence.
+- Rivalry and conflict.
+
+Trade agreements must have real economic consequences.
+
+Diplomatic actions must cost appropriate resources where applicable.
+
+Do not create buttons that merely display messages without affecting the simulation.
+
+For the initial version, diplomacy can use a simple relationship score and a small number of clearly defined actions.
+
+Later versions can add alliances, tribute, rival claims, treaties, and more sophisticated political systems.
+
+---
+
+# 14. CAMPAIGN AND PROGRESSION
+
+The game should eventually offer several ways to play.
+
+## CAMPAIGN MODE
+
+A sequence of missions with distinct objectives.
+
+Example missions:
+
+MISSION 1: THE FIRST CROWN
+
+Establish a settlement, construct essential buildings, and reach a population target.
+
+MISSION 2: THE GRANARIES OF THE KINGDOM
+
+Develop reliable food production and survive a shortage.
+
+MISSION 3: THE GOLDEN ROAD
+
+Establish a profitable trade route and accumulate wealth.
+
+MISSION 4: THE WALLS OF THE CAPITAL
+
+Construct a functioning defensive perimeter and protect the royal compound.
+
+MISSION 5: THE RIVAL KINGDOM
+
+Survive an attack and defend the settlement.
+
+MISSION 6: THE RISE OF A DYNASTY
+
+Develop the economy, maintain public satisfaction, and achieve a major territorial objective.
+
+Each mission should have specific victory and defeat conditions.
+
+Campaign progression must be saved.
+
+## SANDBOX MODE
+
+Allow the player to develop a settlement without a fixed campaign narrative.
+
+Provide adjustable starting resources, map size, and rival difficulty where practical.
+
+## SURVIVAL MODE
+
+Challenge the player to survive increasingly difficult economic and military events.
+
+Implement this only after the core game loop is stable.
+
+## HISTORICAL SCENARIOS
+
+Create separate campaigns inspired by particular historical periods and civilizations.
+
+Use historically grounded objectives, geographical settings, and political circumstances where research supports them.
+
+Do not present fictional battles as documented historical events.
+
+---
+
+# 15. MOBILE-FIRST INTERFACE
+
+The game must be designed for Android smartphones from the beginning.
+
+Do not build a desktop interface and simply shrink it.
+
+Use a responsive layout that remains usable on narrow screens.
+
+## MAIN MENU
+
+Display:
+
+AFRICAN CROWNS
+EMPIRES OF THE SUN
+
+Menu options:
+
+- Continue Game.
+- New Campaign.
+- Sandbox.
+- Civilizations.
+- Settings.
+- Historical Codex.
+
+Initially, make the available features functional and clearly mark future modes as unavailable rather than presenting fake functionality.
+
+## IN-GAME HUD
+
+Keep the map as the main visual focus.
+
+Place a compact resource bar along the top.
+
+Provide an accessible construction button near the bottom.
+
+Include controls for:
+
+- Construction.
+- Economy.
+- Population.
+- Military.
+- Diplomacy.
+- Objectives.
+- Pause and settings.
+
+Use contextual panels instead of permanently displaying every possible control.
+
+When a building is selected, show its relevant information and available actions.
+
+When a unit is selected, show movement and combat commands.
+
+When the player opens construction, display a compact catalogue of buildings grouped by category.
+
+Every essential action must work with a tap.
+
+## TOUCH CONTROLS
+
+Support:
+
+- One-finger map panning.
+- Pinch-to-zoom where supported.
+- Tap-to-select.
+- Tap-to-place buildings.
+- Tap-to-issue movement orders.
+- Clearly visible confirmation and cancellation controls.
+
+Avoid requiring keyboard shortcuts.
+
+Prevent accidental placement when the player is only trying to pan the map.
+
+Use sufficiently large touch targets.
+
+Do not let menus cover the entire playable map unnecessarily.
+
+## SCREEN ORIENTATION
+
+Prefer landscape orientation for the main strategy experience.
+
+Keep the interface responsive and usable on different Android screen sizes.
+
+Where orientation cannot be locked by the browser, adapt to the available viewport.
+
+---
+
+# 16. SOUND AND IMMERSION
+
+Build an atmospheric audio system.
+
+Use original or properly licensed sounds.
+
+The world should feel alive through:
+
+- Ambient birds and wind.
+- Appropriate environmental ambience.
+- Subtle construction sounds.
+- Market activity.
+- Footsteps.
+- Building completion sounds.
+- Music appropriate to the selected civilization and historical setting.
+
+Do not use generic audio for every culture if better-fitting original material is available.
+
+Sound must be optional.
+
+Include separate controls for music and sound effects.
+
+The game must remain fully playable when audio is disabled.
+
+Do not make externally hosted audio files essential to core gameplay.
+
+---
+
+# 17. HISTORICAL CODEX
+
+Create an in-game historical reference section.
+
+It should explain the civilizations, architectural inspirations, trade systems, and historical periods represented.
+
+Each entry should distinguish between:
+
+- Documented historical information.
+- Historically informed interpretation.
+- Fictional game mechanics.
+- Alternate-history scenarios.
+
+Use reliable historical sources when available.
+
+Do not invent quotations, historical events, or specific cultural practices and present them as facts.
+
+Where historical evidence is uncertain, acknowledge the uncertainty.
+
+The purpose is to make the game entertaining while encouraging genuine curiosity about African history.
+
+---
+
+# 18. SAVING AND GAME STATE
+
+Implement a reliable saving system.
+
+For the initial single-player version, save:
+
+- Selected civilization.
+- Current scenario.
+- Resource inventory.
+- Population.
+- Building positions.
+- Building states.
+- Worker assignments.
+- Unit positions and states.
+- Current objectives.
+- Rival state.
+- Simulation time.
+- Relevant economic and diplomatic variables.
+
+Validate save data before loading it.
+
+Provide a visible save confirmation.
+
+Do not lose the entire game because the player accidentally refreshes the browser.
+
+Use local persistent storage for single-player saves where supported.
+
+Structure the save system so it can later be extended to authenticated cloud saves.
+
+Online multiplayer saves and match state must be managed by the server rather than trusting a player's local save data.
+
+---
+
+# 19. PERFORMANCE REQUIREMENTS
+
+The primary target is a reasonably modern Android smartphone, including mid-range devices.
+
+The game must prioritize stable performance and battery efficiency.
+
+Requirements:
+
+- Use lightweight 2D graphics.
+- Avoid unnecessary rendering work.
+- Avoid excessive numbers of animated entities.
+- Keep pathfinding and simulation costs under control.
+- Avoid full-screen React rerenders for every individual game tick.
+- Separate the rendering loop from the interface state where appropriate.
+- Pause or reduce simulation when the game is not visible, where appropriate.
+- Respect reduced-motion preferences for interface animations.
+- Handle browser resizing and returning from background states safely.
+- Avoid memory leaks and runaway timers.
+- Keep the interface readable at narrow screen widths.
+
+Aim for smooth gameplay, targeting approximately 30–60 frames per second on suitable devices.
+
+Treat this as a performance goal, not a guarantee.
+
+When necessary, reduce animation density before reducing the clarity of the gameplay interface.
+
+---
+
+# 20. ONLINE MULTIPLAYER ARCHITECTURE
+
+Do not attempt to implement a massive multiplayer strategy game before the single-player version works.
+
+However, structure the code so multiplayer can be added without rewriting the entire game.
+
+The eventual multiplayer experience should support:
+
+- Player accounts.
+- Creating a lobby.
+- Joining a lobby through a code.
+- A list of connected players.
+- A host or match authority.
+- Civilization selection.
+- Shared map initialization.
+- Synchronized game state.
+- Player-specific ownership of buildings and units.
+- Real-time actions.
+- Disconnection handling.
+- Reconnection where practical.
+- Match completion.
+- Basic anti-cheat validation.
+
+The target initial multiplayer experience is a small match between two to four players.
+
+Do not attempt hundreds of simultaneous players.
+
+Use an authoritative server to validate important gameplay actions.
+
+Players should send commands such as building a structure, moving a unit, or recruiting a unit. The server should validate those commands and update the shared match state.
+
+Do not trust a client to determine its own resources, combat results, or victory conditions.
+
+Use authenticated sessions and appropriate database security rules.
+
+Do not store private credentials in public game state.
+
+If a requested multiplayer capability cannot be completed in the current platform configuration, document the limitation and keep the single-player game working.
+
+Do not display a fake multiplayer mode that does not actually connect different devices.
+
+For the first playable release, prioritize local single-player gameplay. Then implement multiplayer as a separate development milestone using the full-stack web runtime.
+
+---
+
+# 21. GAME ARCHITECTURE
+
+Keep the code organized into logical modules.
+
+Separate the following responsibilities:
+
+- Game state.
+- Simulation and time progression.
+- Resource economy.
+- Building definitions.
+- Construction and placement.
+- Population and workers.
+- Pathfinding.
+- Combat.
+- Rival AI.
+- Campaign objectives.
+- Rendering.
+- User interface.
+- Saving and loading.
+- Audio.
+- Multiplayer networking.
+
+Represent buildings, units, civilizations, and resources through structured data rather than duplicating hard-coded logic across interface components.
+
+Use a centralized and testable game-state model.
+
+Ensure that game actions modify the actual simulation state.
+
+For example, constructing a farm must:
+
+1. Validate its cost.
+2. Validate its placement.
+3. Deduct the required resources.
+4. Create a building entity.
+5. Start construction.
+6. Mark the building as operational when construction finishes.
+7. Add food production to the economy.
+8. Display the building correctly.
+
+Do not implement features as isolated visual demonstrations that have no relationship to the underlying game.
+
+---
+
+# 22. DEVELOPMENT ORDER
+
+This project is too substantial to build reliably by attempting every feature simultaneously.
+
+Follow the stages below.
+
+## STAGE 1: PLAYABLE VERTICAL SLICE
+
+Build a complete small scenario with:
+
+- A functioning map.
+- One playable civilization.
+- A small population.
+- Food, timber, stone, and gold.
+- At least six functioning building types.
+- Construction placement and resource costs.
+- A functioning food-production system.
+- Population consumption.
+- Housing capacity.
+- Public satisfaction.
+- Basic villagers.
+- A royal compound.
+- Basic fortifications.
+- A recruitable military unit type.
+- One functioning rival AI.
+- Basic movement and combat.
+- A victory condition.
+- A defeat condition.
+- A restart option.
+- Persistent local saving.
+- Mobile touch controls.
+
+This is the first delivery milestone.
+
+The player must be able to start a game, construct a settlement, maintain its economy, defend it, and complete or lose the scenario.
+
+Do not continue adding features if these core mechanics do not work.
+
+## STAGE 2: POLISH THE CORE GAME
+
+Improve:
+
+- Visual quality.
+- Building diversity.
+- Worker behavior.
+- Rival AI.
+- Tutorial design.
+- Sound.
+- Game balance.
+- Performance.
+- Mobile interface usability.
+- Save reliability.
+
+Test every important interaction.
+
+## STAGE 3: CIVILIZATION EXPANSION
+
+Add the Mali-inspired and Benin-inspired civilization systems alongside the initial civilization.
+
+Implement their unique buildings, bonuses, landscapes, campaigns, and economic systems.
+
+## STAGE 4: CAMPAIGN AND STRATEGIC DEPTH
+
+Add:
+
+- More missions.
+- Improved diplomacy.
+- Additional unit roles.
+- More complex fortifications.
+- Trade routes.
+- Seasonal mechanics where appropriate.
+- More advanced AI behavior.
+- Additional map types.
+
+## STAGE 5: ONLINE MULTIPLAYER
+
+Build the backend and implement real multiplayer.
+
+Start with two players and short test matches.
+
+Test synchronization, reconnection, validation, and match completion before increasing the number of supported players.
+
+## STAGE 6: RELEASE PREPARATION
+
+Prepare the game for installation and testing on Android devices.
+
+Test:
+
+- Small screens.
+- Different screen densities.
+- Touch controls.
+- Performance.
+- Battery consumption.
+- Save and restore behavior.
+- Network interruption.
+- Error handling.
+- Browser compatibility.
+- Installation and launch behavior.
+
+If a native Android package is eventually required, evaluate a suitable packaging or native development workflow without discarding the working game architecture.
+
+---
+
+# 23. TESTING AND ACCEPTANCE CRITERIA
+
+Do not claim that a feature works merely because its button exists.
+
+Test the actual gameplay.
+
+The first version is acceptable only when the following tests pass:
+
+TEST A:
+The player starts a new scenario successfully.
+
+TEST B:
+The player can collect or produce resources.
+
+TEST C:
+The player can construct a building by paying the correct cost.
+
+TEST D:
+The game prevents invalid or overlapping construction.
+
+TEST E:
+A functioning farm produces food over time.
+
+TEST F:
+Population consumes food.
+
+TEST G:
+Houses increase housing capacity.
+
+TEST H:
+The resource interface updates after gameplay actions.
+
+TEST I:
+The player can recruit and move a unit.
+
+TEST J:
+The rival can make decisions and perform meaningful actions.
+
+TEST K:
+The combat system can resolve an engagement.
+
+TEST L:
+The victory and defeat conditions work.
+
+TEST M:
+The game can be saved, refreshed, and restored without losing the essential game state.
+
+TEST N:
+The game remains usable with Android touch controls.
+
+TEST O:
+The game does not rely on a desktop keyboard or mouse.
+
+TEST P:
+The game can run its essential single-player mechanics without a Gemini API request for each action.
+
+TEST Q:
+The interface does not display fake resource values, fake construction progress, or fake multiplayer connections.
+
+Fix failures before declaring the milestone complete.
+
+---
+
+# 24. HOW YOU SHOULD WORK AS THE CODING AGENT
+
+Begin by planning the smallest complete implementation of Stage 1.
+
+Then create the actual application and its supporting files.
+
+Do not respond with a design document alone.
+
+Do not merely explain how I could build the game.
+
+Write the code, render the playable game, and verify the main mechanics.
+
+Do not generate a beautiful menu and leave the actual game empty.
+
+Do not create a static screenshot and describe it as a playable strategy game.
+
+Do not create buttons whose only function is to display an alert.
+
+Do not use placeholder text to simulate gameplay.
+
+If an advanced feature is not yet implemented, keep it out of the active gameplay loop and clearly identify it as a future feature.
+
+Prefer a small number of functioning mechanics over a large number of broken ones.
+
+When you encounter a technical limitation, implement the simplest reliable alternative and explain the trade-off.
+
+When a feature fails, investigate the cause, repair it, and retest it.
+
+Keep the code modular so the project can grow without becoming unmanageable.
+
+Do not replace working systems unnecessarily when adding features.
+
+Preserve existing progress throughout iterative changes.
+
+At the end of the first development stage, provide:
+
+1. A summary of what has actually been implemented.
+2. A list of the core mechanics that have been tested.
+3. Any known bugs or incomplete systems.
+4. Instructions for playing the game.
+5. Instructions for running it on an Android phone.
+6. The next three highest-priority development tasks.
+
+## FINAL INSTRUCTION
+
+Start building AFRICAN CROWNS now.
+
+Your first objective is to deliver a genuinely playable, attractive, mobile-first African kingdom-building strategy game with a functioning economic loop, construction system, population, basic military mechanics, rival AI, and victory conditions.
+
+Prioritize working gameplay, historical respect, mobile usability, and a strong foundation for future expansion.
+
+Build the game itself, not merely a representation of the idea.
